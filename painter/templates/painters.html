@@ -1,0 +1,21 @@
+<h1>Painters</h1>
+
+<ul>
+    {% for painter in all_painters %}
+    <div style="margin-top: 10px">
+        {{ painter.firstname }} {{painter.surname}} is from {{ painter.country }}
+        <form action="/deletePainter/{{painter.id}}/" 
+            style="display: inline; margin: 10px"
+            method="post">{% csrf_token %}
+            <input type="submit" value="X"/>
+        </form>
+    </div>
+    {% endfor %}
+</ul>
+
+<form action="/addPainter/" method="post">{% csrf_token %}
+    <div><input type="text" name="firstname"/></div>
+    <div><input type="text" name="surname"/></div> 
+    <div><input type="text" name="country"/></div>
+    <div><input type="submit" value="Add"/></div>
+</form>
